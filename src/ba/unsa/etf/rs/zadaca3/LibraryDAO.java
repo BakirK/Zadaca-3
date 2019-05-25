@@ -4,10 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class LibraryDAO {
     private ObservableList<Book> books = FXCollections.observableArrayList();
@@ -77,6 +74,8 @@ public class LibraryDAO {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:library.db");
             Class.forName("org.sqlite.JDBC");
+            addBookStatement = conn.prepareStatement("INSERT INTO BOOKS(id, author, title, isbn, pagecount, publishdate)" +
+                    " VALUES (?,?,?,?,?,?); COMMIT;");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -86,7 +85,19 @@ public class LibraryDAO {
     }
 
 
-    public void addBook(Book b) {
+    public void addBook(Book book) {
+        try {
+            addBookStatement.setInt(1, book.getId());
+            addBookStatement.setString(2, book.authorProperty().get());
+            addBookStatement.setString(3, book.titleProperty().get());
+            addBookStatement.setString(4, book.isbnProperty().get());
+            addBookStatement.setInt(5, book.pageCountProperty().get());
+            addBookStatement.setDate(6, Date.valueOf(book.publishDateProperty().get()));
+            addBookStatement.executeUpdate();
+            books.add(book);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
