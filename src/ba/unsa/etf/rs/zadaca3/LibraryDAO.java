@@ -36,7 +36,7 @@ public class LibraryDAO {
         this.currentBook.set(currentBook);
     }
 
-    private static LibraryDAO getInstance() {
+    public static LibraryDAO getInstance() {
         if (instance == null) {
             initialize();
         }

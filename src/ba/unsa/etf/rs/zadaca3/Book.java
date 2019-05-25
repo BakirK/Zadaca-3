@@ -65,7 +65,7 @@ public class Book {
         this.title.set(title);
     }
 
-    private String getIsbn() {
+    protected String getIsbn() {
         return isbn.get();
     }
 
@@ -89,7 +89,7 @@ public class Book {
         this.pageCount.set(pageCount);
     }
 
-    private LocalDate getPublishDate() {
+    public LocalDate getPublishDate() {
         return publishDate.get();
     }
 
