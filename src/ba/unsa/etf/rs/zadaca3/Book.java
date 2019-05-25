@@ -15,7 +15,7 @@ public class Book {
     private SimpleIntegerProperty pageCount  = new SimpleIntegerProperty();
     private SimpleObjectProperty<LocalDate> publishDate = new SimpleObjectProperty<>();
 
-    private Book(int id, String author, String title, String isbn, int pageCount, LocalDate publishDate) {
+    public Book(int id, String author, String title, String isbn, int pageCount, LocalDate publishDate) {
         this.id = id;
         setAuthor(author);
         setTitle(title);
@@ -25,7 +25,7 @@ public class Book {
     }
 
 
-    private Book(String author, String title, String isbn, int pageCount, LocalDate publishDate) {
+    public Book(String author, String title, String isbn, int pageCount, LocalDate publishDate) {
         setAuthor(author);
         setTitle(title);
         setIsbn(isbn);
