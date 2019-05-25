@@ -116,7 +116,20 @@ public class LibraryDAO {
 
 
     public void updateCurrentBook(Book book) {
-
+        try {
+            updateBook.setString(1, book.authorProperty().get());
+            updateBook.setString(2, book.titleProperty().get());
+            updateBook.setString(3, book.authorProperty().get());
+            updateBook.setString(4, book.isbnProperty().get());
+            updateBook.setDate(5, Date.valueOf(book.publishDateProperty().get()));
+            updateBook.setInt(6, book.getId());
+            updateBook.executeUpdate();
+            int index = books.indexOf(currentBook);
+            books.set(books.indexOf(currentBook), book);
+            currentBook.set(book);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
