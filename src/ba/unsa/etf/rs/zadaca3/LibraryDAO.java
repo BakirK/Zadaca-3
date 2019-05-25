@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class LibraryDAO {
     private ObservableList<Book> books = FXCollections.observableArrayList();
@@ -143,6 +144,12 @@ public class LibraryDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void defaultData() {
+        addBook(new Book("Meša Selimović", "Tvrđava", "abcd", 500, LocalDate.now()));
+        addBook(new Book("Ivo Andrić", "Travnička hronika", "abcd", 500, LocalDate.now()));
+        addBook(new Book("J. K. Rowling", "Harry Potter", "abcd", 500, LocalDate.now()));
     }
 
 
