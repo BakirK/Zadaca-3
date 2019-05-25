@@ -11,7 +11,8 @@ public class LibraryDAO {
     private SimpleObjectProperty<Book> currentBook  = null;
     private static LibraryDAO instance = null;
     private Connection conn;
-    private PreparedStatement getBooksStatement, addBookStatement, deleteCurrentBookStatement, updateBook;
+    private PreparedStatement getBooksStatement, addBookStatement, deleteCurrentBookStatement, updateBook,
+            deleteAllBooksStatement;
 
 
     private ObservableList<Book> getBooks() {
@@ -79,6 +80,8 @@ public class LibraryDAO {
             deleteCurrentBookStatement = conn.prepareStatement("DELETE FROM books WHERE id=?; COMMIT;");
             updateBook = conn.prepareStatement("UPDATE books SET author = ?, title = ?, isbn = ?, pagecount = ?," +
                     "publishdate = ? WHERE id = ?; COMMIT");
+
+            deleteAllBooksStatement = conn.prepareStatement("DELETE FROM books WHERE 1 = 1; COMMIT;");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -132,6 +135,9 @@ public class LibraryDAO {
         }
     }
 
+    public void clearAll() {
+
+    }
 
 
 
