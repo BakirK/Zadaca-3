@@ -11,7 +11,7 @@ public class LibraryDAO {
     private SimpleObjectProperty<Book> currentBook  = null;
     private static LibraryDAO instance = null;
     private Connection conn;
-    private PreparedStatement getBooksStatement, addBookStatement;
+    private PreparedStatement getBooksStatement, addBookStatement, deleteCurrentBookStatement;
 
 
     private ObservableList<Book> getBooks() {
@@ -76,6 +76,8 @@ public class LibraryDAO {
             Class.forName("org.sqlite.JDBC");
             addBookStatement = conn.prepareStatement("INSERT INTO BOOKS(id, author, title, isbn, pagecount, publishdate)" +
                     " VALUES (?,?,?,?,?,?); COMMIT;");
+            deleteCurrentBookStatement = conn.prepareStatement("DELETE FROM books WHERE id=?; COMMIT;");
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -98,7 +100,17 @@ public class LibraryDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public  void deleteBook() {
+        try {
+            deleteCurrentBookStatement.setInt(1, currentBook.get().getId());
+            deleteCurrentBookStatement.executeUpdate();
+            books.remove(currentBook.get());
+            currentBook = null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
