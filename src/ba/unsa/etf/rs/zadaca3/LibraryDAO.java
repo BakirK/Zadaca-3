@@ -136,7 +136,13 @@ public class LibraryDAO {
     }
 
     public void clearAll() {
-
+        try {
+            deleteAllBooksStatement.executeUpdate();
+            books.clear();
+            currentBook = null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
