@@ -27,11 +27,16 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" text="Open" />
+              <MenuItem mnemonicParsing="false" text="Save" />
+              <MenuItem mnemonicParsing="false" text="Print" />
+              <MenuItem mnemonicParsing="false" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
+              <MenuItem mnemonicParsing="false" text="Add" />
+              <MenuItem mnemonicParsing="false" text="Change" />
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
@@ -52,11 +57,11 @@
           <Button maxWidth="50" mnemonicParsing="false" text="Button" />
         </items>
       </ToolBar>
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <TableView fx:id="tblBooks" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
         <columns>
-          <TableColumn prefWidth="160.0" text="Author" />
-          <TableColumn prefWidth="233.0" text="Title" />
-          <TableColumn minWidth="0.0" prefWidth="105.0" text="Publish date" />
+          <TableColumn fx:id="colAuthor" prefWidth="160.0" text="Author" />
+          <TableColumn fx:id="colTitle" prefWidth="233.0" text="Title" />
+          <TableColumn fx:id="colPublishDate" minWidth="0.0" prefWidth="105.0" text="Publish date" />
         </columns>
       </TableView>
    </children>
