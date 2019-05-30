@@ -74,7 +74,7 @@
               </graphic>
           </Button>
 
-          <Button maxWidth="50" mnemonicParsing="false" text="Button" >
+          <Button maxWidth="50" mnemonicParsing="false">
               <graphic>
                   <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
                       <image>
