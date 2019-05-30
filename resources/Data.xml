@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<library>
+    <book pageCount="500">
+        <author>Meša Selimović</author>
+        <title>Tvrđava</title>
+        <isbn>abcd</isbn>
+        <publishDate>20. 3. 1930</publishDate>
+    </book>
+</library>

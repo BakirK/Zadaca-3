@@ -8,12 +8,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="599.0" minWidth="10.0" prefWidth="301.0" />
@@ -89,7 +89,7 @@
         <columns>
           <TableColumn fx:id="colAuthor" prefWidth="160.0" text="Author" />
           <TableColumn fx:id="colTitle" prefWidth="233.0" text="Title" />
-          <TableColumn fx:id="colPublishDate" minWidth="0.0" prefWidth="105.0" text="Publish date" />
+          <TableColumn fx:id="colPublishDate" minWidth="0.0" prefWidth="198.0" text="Publish date" />
         </columns>
       </TableView>
    </children>
