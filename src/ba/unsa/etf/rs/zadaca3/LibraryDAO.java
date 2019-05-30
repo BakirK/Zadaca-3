@@ -59,7 +59,6 @@ public class LibraryDAO {
         instance = new LibraryDAO();
     }
 
-    //TODO: metoda za punjenje liste i prepared statements
     public LibraryDAO() {
         prepareStatements();
         loadBooks();
@@ -164,7 +163,7 @@ public class LibraryDAO {
                         set.getInt(5), set.getDate(6).toLocalDate()));
             }
             if (books.size() > 0) {
-                currentBook.set(books.get(0));
+                currentBook = new SimpleObjectProperty<>(books.get(0));
             }
         } catch (SQLException e) {
             e.printStackTrace();
