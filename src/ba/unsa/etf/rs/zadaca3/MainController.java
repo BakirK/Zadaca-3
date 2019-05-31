@@ -2,7 +2,9 @@ package ba.unsa.etf.rs.zadaca3;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,7 +16,10 @@ public class MainController {
     private TableView tblBooks;
     @FXML
     private TableColumn colAuthor, colTitle, colPublishDate;
+    @FXML
+    private Button tbDelete, tbChange, tbAdd;
     private LibraryDAO model;
+
 
     public MainController(LibraryDAO model) {
         this.model = model;
@@ -38,28 +43,28 @@ public class MainController {
                 if (newBook == null) {
 
                 } else {
-                    updateSelectedDriver();
+                    updateSelectedBook();
                 }
                 tblBooks.refresh();
             }
-
-
         });
 
         tblBooks.requestFocus();
         tblBooks.getSelectionModel().selectFirst();
-
-
-
     }
 
+
+    //FIXME
     private void setTextPropetryUnbind() {
+
     }
 
+    //FIXME
     private void setTextPropetryBind() {
     }
 
-    private void updateSelectedDriver() {
+    @FXML
+    private void updateSelectedBook() {
         if(model.getCurrentBook() == null) {
             System.out.println("NULL book");
         }
@@ -69,6 +74,16 @@ public class MainController {
         setTextPropetryBind();
     }
 
+    @FXML
+    private void changeBook(ActionEvent actionEvent) {
+    }
 
+    @FXML
+    private void deleteBook(ActionEvent actionEvent) {
+    }
 
+    @FXML
+    private void addBook(ActionEvent actionEvent) {
+
+    }
 }
