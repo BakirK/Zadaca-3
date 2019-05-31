@@ -16,15 +16,15 @@ public class LibraryDAO {
             deleteAllBooksStatement;
 
 
-    private ObservableList<Book> getBooks() {
+    public ObservableList<Book> getBooks() {
         return books;
     }
 
-    private void setBooks(ObservableList<Book> books) {
+    public void setBooks(ObservableList<Book> books) {
         this.books = books;
     }
 
-    private Book getCurrentBook() {
+    public Book getCurrentBook() {
         return currentBook.get();
     }
 
@@ -32,7 +32,7 @@ public class LibraryDAO {
         return currentBook;
     }
 
-    private void setCurrentBook(Book currentBook) {
+    public void setCurrentBook(Book currentBook) {
         this.currentBook.set(currentBook);
     }
 
