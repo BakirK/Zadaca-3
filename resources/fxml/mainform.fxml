@@ -10,6 +10,7 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -28,24 +29,51 @@
          <children>
           <MenuBar>
               <menus>
-                  <Menu mnemonicParsing="false" text="File">
+                  <Menu mnemonicParsing="true" text="_File">
                       <items>
-                          <MenuItem mnemonicParsing="false" text="Open" />
-                          <MenuItem mnemonicParsing="false" text="Save" />
-                          <MenuItem mnemonicParsing="false" text="Print" />
-                          <MenuItem mnemonicParsing="false" text="Exit" />
+                          <MenuItem mnemonicParsing="true" text="_Open...">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                          <MenuItem mnemonicParsing="true" text="_Save">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                          <MenuItem mnemonicParsing="true" text="_Print">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                          <MenuItem mnemonicParsing="true" text="E_xit">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                       </items>
+                     <accelerator>
+                        <KeyCodeCombination alt="ANY" code="F" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Edit">
+                  <Menu mnemonicParsing="true" text="_Edit">
                       <items>
-                          <MenuItem mnemonicParsing="false" text="Add" />
-                          <MenuItem mnemonicParsing="false" text="Change" />
-                          <MenuItem mnemonicParsing="false" text="Delete" />
+                          <MenuItem mnemonicParsing="true" text="_Add">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                          <MenuItem mnemonicParsing="true" text="C_hange">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                          <MenuItem mnemonicParsing="true" text="_Delete">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                       </items>
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
+                  <Menu mnemonicParsing="true" text="_Help">
                       <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
+                          <MenuItem mnemonicParsing="true" text="_About" />
                       </items>
                   </Menu>
               </menus>
