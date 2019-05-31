@@ -68,7 +68,7 @@
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <buttons>
           <Button fx:id="btnOk" mnemonicParsing="false" text="OK" onAction="#validateInput"/>
-            <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" onAction="#closeForm"/>
+            <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" onAction="#zatvoriProzorPropuhJe"/>
         </buttons>
          <GridPane.margin>
             <Insets right="40.0" />

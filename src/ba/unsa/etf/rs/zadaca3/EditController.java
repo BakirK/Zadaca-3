@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -114,18 +115,15 @@ public class EditController {
         });
     }
 
-    private void closeForm() {
-        Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
-    }
-
     private boolean validateText() {
         return dateCorrectInput && authorCorrectInput && titleCorrectInput && isbnCorrectInput;
     }
 
     @FXML
-    private void closeForm(ActionEvent actionEvent) {
-        closeForm();
+    private void zatvoriProzorPropuhJe(ActionEvent actionEvent) {
+        Node n = (Node) actionEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -137,7 +135,9 @@ public class EditController {
             book.setPageCount((Integer) spinPageCount.getValue());
             book.setPublishDate(dpPublishDate.getValue());
             validated = true;
-            closeForm();
+            Node n = (Node) actionEvent.getSource();
+            Stage stage = (Stage) n.getScene().getWindow();
+            stage.close();
         }
     }
 
