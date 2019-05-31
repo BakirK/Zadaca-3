@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDate;
 
@@ -85,5 +87,15 @@ public class MainController {
     @FXML
     private void addBook(ActionEvent actionEvent) {
 
+    }
+
+    @FXML
+    private void checkDoubleClick(MouseEvent mouseEvent) {
+        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+            if(mouseEvent.getClickCount() >= 2){
+                //System.out.println("Double clicked" + mouseEvent.getClickCount());
+
+            }
+        }
     }
 }

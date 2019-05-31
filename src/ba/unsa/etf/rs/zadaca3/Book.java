@@ -41,7 +41,7 @@ public class Book {
         this.id = id;
     }
 
-    private String getAuthor() {
+    public String getAuthor() {
         return author.get();
     }
 
@@ -53,7 +53,7 @@ public class Book {
         this.author.set(author);
     }
 
-    private String getTitle() {
+    public String getTitle() {
         return title.get();
     }
 
