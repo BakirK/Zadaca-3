@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +26,6 @@ public class EditController {
     private Book book = null;
     public Book getBook() {
         if (validated) {
-            validated = false;
             return book;
         } else {
             return null;
@@ -48,6 +48,8 @@ public class EditController {
             fldAuthor.getStyleClass().add("fieldIncorrect");
             dpPublishDate.getEditor().setText("");
             dpPublishDate.getEditor().getStyleClass().add("fieldIncorrect");
+            SpinnerValueFactory<Integer> spinPageCountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, 10, 5);
+            this.spinPageCount.setValueFactory(spinPageCountValueFactory);
 
         } else {
             fldIsbn.setText(book.getIsbn());
@@ -65,10 +67,11 @@ public class EditController {
             dpPublishDate.setValue(book.getPublishDate());
             dpPublishDate.getEditor().getStyleClass().add("fieldCorrect");
             dateCorrectInput = true;
+            SpinnerValueFactory<Integer> spinPageCountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, book.getPageCount(), 5);
+            this.spinPageCount.setValueFactory(spinPageCountValueFactory);
         }
 
-        SpinnerValueFactory<Integer> spinPageCountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, 10);
-        this.spinPageCount.setValueFactory(spinPageCountValueFactory);
+
 
 
         fldTitle.textProperty().addListener(new ChangeListener<String>() {
@@ -131,6 +134,39 @@ public class EditController {
                 }
             }
         });
+
+
+        dpPublishDate.setConverter(new StringConverter<LocalDate>() {
+
+            {
+                dpPublishDate.setPromptText("dd. MM. yyyy");
+            }
+            @Override
+            public String toString(LocalDate localDate) {
+                if (localDate != null) {
+                    return Book.dateFormat.format(localDate);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String s) {
+                if (s != null && !s.isEmpty()) {
+                    return LocalDate.parse(s, Book.dateFormat);
+                } else {
+                    return null;
+                }
+            }
+        });
+
+
+        fldTitle.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+
+            }
+        });
     }
 
     private boolean validateText() {
@@ -152,12 +188,14 @@ public class EditController {
             book.setIsbn(fldIsbn.getText());
             book.setPageCount((Integer) spinPageCount.getValue());
             book.setPublishDate(dpPublishDate.getValue());
+            System.out.println(book.getPublishDate());
             validated = true;
             System.out.println("validated");
             Node n = (Node) actionEvent.getSource();
             Stage stage = (Stage) n.getScene().getWindow();
             stage.close();
         }
+
     }
 
 

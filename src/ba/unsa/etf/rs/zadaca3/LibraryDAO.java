@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Collection;
 
 public class LibraryDAO {
     private ObservableList<Book> books = FXCollections.observableArrayList();
@@ -170,8 +171,7 @@ public class LibraryDAO {
         }
     }
 
-
-
-
-
+    public ObservableList<Book> getBookList() {
+        return books;
+    }
 }

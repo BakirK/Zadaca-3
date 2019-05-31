@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -32,7 +33,11 @@ class XMLTest {
             lista.add(b);
 
         File test = new File("test.xml");
-        XMLFormat.write(test, lista);
+        try {
+            XMLFormat.write(test, lista);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         try {
             String content = new String(Files.readAllBytes(Paths.get(test.getPath())));
 
@@ -49,7 +54,11 @@ class XMLTest {
     public void testSave2 () {
         ArrayList<Book> list = new ArrayList<>();
         File test = new File("test.xml");
-        XMLFormat.write(test, list);
+        try {
+            XMLFormat.write(test, list);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         try {
             String content = new String(Files.readAllBytes(Paths.get(test.getPath())));
             String expected = "<library/>";

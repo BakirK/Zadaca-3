@@ -1,8 +1,10 @@
 .fieldCorrect {
     -fx-control-inner-background: greenyellow;
+    -fx-background-color: greenyellow;
 }
 .fieldIncorrect {
     -fx-control-inner-background: lightpink;
+    -fx-background-color: lightpink;
 }
 
 #tbAdd {

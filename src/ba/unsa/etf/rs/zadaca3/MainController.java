@@ -25,7 +25,7 @@ public class MainController {
     @FXML
     private Button tbDelete, tbChange, tbAdd;
     private LibraryDAO model;
-
+    Stage myStage = new Stage();
 
     public MainController(LibraryDAO model) {
         this.model = model;
@@ -44,7 +44,6 @@ public class MainController {
             @Override
             public void changed(ObservableValue<? extends Book> observableValue, Book oldBook, Book newBook) {
                 if (oldBook != null) {
-                    setTextPropetryUnbind();
                 }
                 if (newBook == null) {
 
@@ -59,25 +58,13 @@ public class MainController {
         tblBooks.getSelectionModel().selectFirst();
     }
 
-
-    //FIXME
-    private void setTextPropetryUnbind() {
-
-    }
-
-    //FIXME
-    private void setTextPropetryBind() {
-    }
-
     @FXML
     private void updateSelectedBook() {
         if(model.getCurrentBook() == null) {
             System.out.println("NULL book");
         }
         Book b = (Book) tblBooks.getSelectionModel().getSelectedItem();
-        setTextPropetryUnbind();
         model.setCurrentBook(b);
-        setTextPropetryBind();
     }
 
     @FXML
@@ -108,13 +95,14 @@ public class MainController {
     }
 
     public void otvoriNovi() throws Exception {
-        Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editbook.fxml"));
-        loader.setController(new EditController(model.getCurrentBook()));
-        Parent root = loader.load();
-        myStage.setTitle("Edit current book");
-        myStage.setScene(new Scene(root, 350, 300));
-        myStage.show();
+        if(!myStage.isShowing() && model.getCurrentBook() != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editbook.fxml"));
+            loader.setController(new EditController(model.getCurrentBook()));
+            Parent root = loader.load();
+            myStage.setTitle("Edit current book");
+            myStage.setScene(new Scene(root, 350, 300));
+            myStage.show();
+        }
     }
 
 }
