@@ -101,7 +101,7 @@ public class EditController {
         dpPublishDate.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observableValue, LocalDate localDate, LocalDate t1) {
-                if (t1.isAfter(LocalDate.now())) {
+                if (t1.isAfter(LocalDate.now()) || t1 == null) {
                     dpPublishDate.getEditor().getStyleClass().removeAll("fieldCorrect");
                     dpPublishDate.getEditor().getStyleClass().add("fieldIncorrect");
                     dateCorrectInput = false;
@@ -131,6 +131,11 @@ public class EditController {
     @FXML
     private void validateInput(ActionEvent actionEvent) {
         if(validateText()) {
+            book.setTitle(fldTitle.getText());
+            book.setAuthor(fldAuthor.getText());
+            book.setIsbn(fldIsbn.getText());
+            book.setPageCount((Integer) spinPageCount.getValue());
+            book.setPublishDate(dpPublishDate.getValue());
             validated = true;
             closeForm();
         }

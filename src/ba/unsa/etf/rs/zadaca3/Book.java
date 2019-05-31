@@ -37,7 +37,7 @@ public class Book {
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -49,7 +49,7 @@ public class Book {
         return author;
     }
 
-    private void setAuthor(String author) {
+    public void setAuthor(String author) {
         this.author.set(author);
     }
 
@@ -61,7 +61,7 @@ public class Book {
         return title;
     }
 
-    private void setTitle(String title) {
+    public void setTitle(String title) {
         this.title.set(title);
     }
 
@@ -73,11 +73,11 @@ public class Book {
         return isbn;
     }
 
-    private void setIsbn(String isbn) {
+    public void setIsbn(String isbn) {
         this.isbn.set(isbn);
     }
 
-    private int getPageCount() {
+    public int getPageCount() {
         return pageCount.get();
     }
 
@@ -85,7 +85,7 @@ public class Book {
         return pageCount;
     }
 
-    private void setPageCount(int pageCount) {
+    public void setPageCount(int pageCount) {
         this.pageCount.set(pageCount);
     }
 
@@ -97,7 +97,7 @@ public class Book {
         return publishDate;
     }
 
-    private void setPublishDate(LocalDate publishDate) {
+    public void setPublishDate(LocalDate publishDate) {
         this.publishDate.set(publishDate);
     }
 
