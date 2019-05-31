@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Book {
-    private int id = 0;
+    private int id;
     private SimpleStringProperty author = new SimpleStringProperty();
     private SimpleStringProperty title = new SimpleStringProperty();
     private SimpleStringProperty isbn = new SimpleStringProperty();

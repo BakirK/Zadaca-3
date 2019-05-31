@@ -85,7 +85,7 @@ public class LibraryDAO {
 
             deleteAllBooksStatement = conn.prepareStatement("DELETE FROM books WHERE 1 = 1; COMMIT;");
 
-            getBooksStatement = conn.prepareStatement("SELECT id, author, title, isbn, pagecount, publishdate FROM books;");
+            getBooksStatement = conn.prepareStatement("SELECT id, author, title, isbn, pagecount, publishdate FROM books ORDER BY id ASC ;");
             getMaxBookId = conn.prepareStatement("SELECT MAX(id) + 1 FROM books;");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,13 +100,15 @@ public class LibraryDAO {
         try {
             ResultSet resultSet = getMaxBookId.executeQuery();
             resultSet.next();
-            addBookStatement.setInt(1, resultSet.getInt(1));
+            int id = resultSet.getInt(1);
+            addBookStatement.setInt(1, id);
             addBookStatement.setString(2, book.authorProperty().get());
             addBookStatement.setString(3, book.titleProperty().get());
             addBookStatement.setString(4, book.isbnProperty().get());
             addBookStatement.setInt(5, book.pageCountProperty().get());
             addBookStatement.setDate(6, Date.valueOf(book.publishDateProperty().get()));
             addBookStatement.executeUpdate();
+            book.setId(id);
             books.add(book);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -134,7 +136,7 @@ public class LibraryDAO {
             updateBook.setDate(5, Date.valueOf(book.publishDateProperty().get()));
             updateBook.setInt(6, book.getId());
             updateBook.executeUpdate();
-            int index = books.indexOf(currentBook);
+            int index = books.indexOf(currentBook.get());
             books.set(index, book);
             currentBook.set(book);
         } catch (SQLException e) {
@@ -161,10 +163,13 @@ public class LibraryDAO {
     public void loadBooks() {
         try {
             ResultSet set = getBooksStatement.executeQuery();
+            int i = 0;
             while(set.next()) {
-                books.add(new Book(set.getInt(1), set.getString(2),
+                Integer id = set.getInt(1);
+                books.add(new Book(id, set.getString(2),
                         set.getString(3), set.getString(4),
                         set.getInt(5), set.getDate(6).toLocalDate()));
+                i++;
             }
             if (books.size() > 0) {
                 currentBook = new SimpleObjectProperty<>(books.get(0));
