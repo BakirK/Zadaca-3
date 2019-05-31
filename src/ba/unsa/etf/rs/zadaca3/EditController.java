@@ -20,7 +20,7 @@ public class EditController {
     @FXML
     private Spinner spinPageCount;
     @FXML
-    private TextField fldIsbn, fldTitle, fldAuthor;
+    private TextField fldIsbn, fldTitle, fldAuthor, lastFocusedFld;
     private boolean isbnCorrectInput = false, dateCorrectInput = false, titleCorrectInput = false,
             authorCorrectInput = false, validated = false;
     private Book book = null;
@@ -160,13 +160,54 @@ public class EditController {
             }
         });
 
-
+        //listeneri koji ce vratit focus na polje nakon klika dugmeta OK
         fldTitle.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-
+                if (aBoolean != t1) {
+                    lastFocusedFld = fldTitle;
+                }
             }
         });
+
+        fldAuthor.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if (aBoolean != t1) {
+                    lastFocusedFld = fldAuthor;
+                }
+            }
+        });
+
+        fldIsbn.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if (aBoolean != t1) {
+                    lastFocusedFld = fldIsbn;
+                }
+            }
+        });
+
+        dpPublishDate.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if (aBoolean != t1) {
+                    lastFocusedFld = dpPublishDate.getEditor();
+                }
+            }
+        });
+
+
+        spinPageCount.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if (aBoolean != t1) {
+                    lastFocusedFld = spinPageCount.getEditor();
+                }
+            }
+        });
+
+
     }
 
     private boolean validateText() {
@@ -182,6 +223,7 @@ public class EditController {
 
     @FXML
     private void validateInput(ActionEvent actionEvent) {
+        lastFocusedFld.requestFocus();
         if(validateText()) {
             book.setTitle(fldTitle.getText());
             book.setAuthor(fldAuthor.getText());
