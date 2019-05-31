@@ -20,7 +20,8 @@ public class EditController {
     private Spinner spinPageCount;
     @FXML
     private TextField fldIsbn, fldTitle, fldAuthor;
-    private boolean isbnCorrectInput, dateCorrectInput, titleCorrectInput, authorCorrectInput, validated = false;
+    private boolean isbnCorrectInput = false, dateCorrectInput = false, titleCorrectInput = false,
+            authorCorrectInput = false, validated = false;
     private Book book = null;
     public Book getBook() {
         if (validated) {
@@ -46,16 +47,24 @@ public class EditController {
             fldAuthor.setText("");
             fldAuthor.getStyleClass().add("fieldIncorrect");
             dpPublishDate.getEditor().setText("");
+            dpPublishDate.getEditor().getStyleClass().add("fieldIncorrect");
 
         } else {
             fldIsbn.setText(book.getIsbn());
             fldIsbn.getStyleClass().add("fieldCorrect");
+            isbnCorrectInput = true;
+
             fldTitle.setText(book.getTitle());
             fldTitle.getStyleClass().add("fieldCorrect");
+            titleCorrectInput = true;
+
             fldAuthor.setText(book.getAuthor());
             fldAuthor.getStyleClass().add("fieldCorrect");
-            dpPublishDate.setValue(book.getPublishDate());
+            authorCorrectInput = true;
 
+            dpPublishDate.setValue(book.getPublishDate());
+            dpPublishDate.getEditor().getStyleClass().add("fieldCorrect");
+            dateCorrectInput = true;
         }
 
         SpinnerValueFactory<Integer> spinPageCountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, 10);
@@ -144,6 +153,7 @@ public class EditController {
             book.setPageCount((Integer) spinPageCount.getValue());
             book.setPublishDate(dpPublishDate.getValue());
             validated = true;
+            System.out.println("validated");
             Node n = (Node) actionEvent.getSource();
             Stage stage = (Stage) n.getScene().getWindow();
             stage.close();
