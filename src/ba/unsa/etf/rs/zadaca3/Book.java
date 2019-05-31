@@ -116,6 +116,11 @@ public class Book {
         return (this.id == other.id);
     }
 
+    @Override
+    public int hashCode() {
+        return 7 + 5*id; // 5 and 7 are random prime numbers
+    }
+
 
 
 
