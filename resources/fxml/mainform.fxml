@@ -1,96 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane fx:controller="ba.unsa.etf.rs.zadaca3.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="599.0" minWidth="10.0" prefWidth="301.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="1.0" prefWidth="299.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="218.0" minHeight="0.0" prefHeight="26.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="344.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="334.0" minHeight="10.0" prefHeight="321.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <MenuBar GridPane.columnSpan="2">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Open" />
-              <MenuItem mnemonicParsing="false" text="Save" />
-              <MenuItem mnemonicParsing="false" text="Print" />
-              <MenuItem mnemonicParsing="false" text="Exit" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Add" />
-              <MenuItem mnemonicParsing="false" text="Change" />
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-         <GridPane.margin>
-            <Insets top="10.0" />
-         </GridPane.margin>
-      </MenuBar>
-      <ToolBar prefHeight="62.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-        <items>
-          <Button fx:id="tbAdd" onAction="#addBook" maxWidth="50" mnemonicParsing="false">
-              <graphic>
-                  <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
-                      <image>
-                          <Image url="/add.png" />
-                      </image>
-                  </ImageView>
-              </graphic>
-          </Button>
-
-          <Button fx:id="tbChange" onAction="#changeBook" maxWidth="50" mnemonicParsing="false">
-              <graphic>
-                  <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
-                      <image>
-                          <Image url="/edit.png" />
-                      </image>
-                  </ImageView>
-              </graphic>
-          </Button>
-
-          <Button fx:id="tbDelete" onAction="#deleteBook" maxWidth="50" mnemonicParsing="false">
-              <graphic>
-                  <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
-                      <image>
-                          <Image url="/delete.png" />
-                      </image>
-                  </ImageView>
-              </graphic>
-          </Button>
-        </items>
-      </ToolBar>
-      <TableView fx:id="tblBooks" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<center>
+    <TableView fx:id="tblBooks" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colAuthor" prefWidth="160.0" text="Author" />
-          <TableColumn fx:id="colTitle" prefWidth="233.0" text="Title" />
-          <TableColumn fx:id="colPublishDate" minWidth="0.0" prefWidth="198.0" text="Publish date" />
+            <TableColumn fx:id="colAuthor" prefWidth="160.0" text="Author" />
+            <TableColumn fx:id="colTitle" prefWidth="233.0" text="Title" />
+            <TableColumn fx:id="colPublishDate" minWidth="0.0" prefWidth="198.0" text="Publish date" />
         </columns>
-      </TableView>
-   </children>
-</GridPane>
+    </TableView>
+</center>
+   <top>
+      <VBox prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+          <MenuBar>
+              <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                      <items>
+                          <MenuItem mnemonicParsing="false" text="Open" />
+                          <MenuItem mnemonicParsing="false" text="Save" />
+                          <MenuItem mnemonicParsing="false" text="Print" />
+                          <MenuItem mnemonicParsing="false" text="Exit" />
+                      </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                      <items>
+                          <MenuItem mnemonicParsing="false" text="Add" />
+                          <MenuItem mnemonicParsing="false" text="Change" />
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                      </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                      <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                      </items>
+                  </Menu>
+              </menus>
+          </MenuBar>
+          <ToolBar prefHeight="62.0" prefWidth="600.0">
+              <items>
+                  <Button fx:id="tbAdd" maxWidth="50" mnemonicParsing="false" onAction="#addBook">
+                      <graphic>
+                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
+                              <image>
+                                  <Image url="/add.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+      
+                  <Button fx:id="tbChange" maxWidth="50" mnemonicParsing="false" onAction="#changeBook">
+                      <graphic>
+                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
+                              <image>
+                                  <Image url="/edit.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+      
+                  <Button fx:id="tbDelete" maxWidth="50" mnemonicParsing="false" onAction="#deleteBook">
+                      <graphic>
+                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
+                              <image>
+                                  <Image url="/delete.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+              </items>
+          </ToolBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <ProgressBar prefWidth="200.0" progress="0.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
