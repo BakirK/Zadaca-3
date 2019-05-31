@@ -6,7 +6,9 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class LibraryDAO {
     private ObservableList<Book> books = FXCollections.observableArrayList();
@@ -193,7 +195,25 @@ public class LibraryDAO {
         }
     }
 
+
+/*
     public ObservableList<Book> getBookList() {
         return books;
+    }
+
+    public List<Book> getBookList() {
+        List<Book> foo = new ArrayList<>(books);
+        return foo;
+        //return books;
+    }*/
+
+    //zasto radi kada se vrati string ali ako se vrati List ili ObservableList sa
+    // metodama equals, hashCode, i toString za poredjenje, nijedna od tih metoda porednjenja
+    //se ne pozove pri trazenju list.contains("string"); ?????
+    public String getBookList() {
+        String list= "";
+        for(int i=0; i< books.size(); i++)
+            list += books.get(i).toString() + "\n";
+        return list;
     }
 }
