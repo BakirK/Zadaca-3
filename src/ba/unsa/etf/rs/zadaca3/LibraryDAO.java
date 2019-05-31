@@ -145,8 +145,8 @@ public class LibraryDAO {
         try {
             updateBook.setString(1, book.authorProperty().get());
             updateBook.setString(2, book.titleProperty().get());
-            updateBook.setString(3, book.authorProperty().get());
-            updateBook.setString(4, book.isbnProperty().get());
+            updateBook.setString(3, book.isbnProperty().get());
+            updateBook.setInt(4, book.pageCountProperty().get());
             updateBook.setDate(5, Date.valueOf(book.publishDateProperty().get()));
             updateBook.setInt(6, currentBook.get().getId());
             updateBook.executeUpdate();
