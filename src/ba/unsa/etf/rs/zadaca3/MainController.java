@@ -4,12 +4,16 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
@@ -94,8 +98,21 @@ public class MainController {
         if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
             if(mouseEvent.getClickCount() >= 2){
                 //System.out.println("Double clicked" + mouseEvent.getClickCount());
-
+                try {
+                    otvoriNovi();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+
+    public void otvoriNovi() throws Exception {
+        Stage myStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/editbook.fxml"));
+        myStage.setTitle("Edit selected book");
+        myStage.setScene(new Scene(root, 300, 275));
+        myStage.show();
+    }
+
 }
