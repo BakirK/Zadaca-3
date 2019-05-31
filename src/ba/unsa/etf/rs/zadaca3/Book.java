@@ -111,9 +111,15 @@ public class Book {
 
     @Override
     public boolean equals(Object o) {
-        if(!(o instanceof Book)) return false;
+        if(!(o instanceof Book)) {
+            if (o instanceof String) {
+                String s1 = this.getAuthor() + ", " + this.getTitle();
+                return s1.equals((String) o);
+            }
+            return false;
+        }
         Book other = (Book) o;
-        return (this.id == other.id);
+        return (this.id == other.id) ;
     }
 
     @Override
