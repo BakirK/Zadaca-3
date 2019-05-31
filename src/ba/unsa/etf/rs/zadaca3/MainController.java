@@ -109,9 +109,11 @@ public class MainController {
 
     public void otvoriNovi() throws Exception {
         Stage myStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/editbook.fxml"));
-        myStage.setTitle("Edit selected book");
-        myStage.setScene(new Scene(root, 300, 275));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editbook.fxml"));
+        loader.setController(new EditController(model.getCurrentBook()));
+        Parent root = loader.load();
+        myStage.setTitle("Edit current book");
+        myStage.setScene(new Scene(root, 350, 300));
         myStage.show();
     }
 
