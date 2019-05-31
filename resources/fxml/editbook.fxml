@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane stylesheets="/css/form.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rs.zadaca3.EditController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="205.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="263.0" />
@@ -45,30 +45,30 @@
          <GridPane.margin>
             <Insets left="20.0" />
          </GridPane.margin></Label>
-      <TextField prefWidth="200.0" GridPane.columnIndex="1">
+      <TextField fx:id="fldAuthor" prefWidth="200.0" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets right="25.0" />
          </GridPane.margin></TextField>
-      <TextField prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="fldTitle" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets right="25.0" />
          </GridPane.margin></TextField>
-      <TextField prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <TextField fx:id="fldIsbn" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets right="25.0" />
          </GridPane.margin></TextField>
-      <Spinner prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Spinner min="10" max="1000" fx:id="spinPageCount" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets right="25.0" />
          </GridPane.margin></Spinner>
-      <DatePicker prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <DatePicker fx:id="dpPublishDate" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets right="25.0" />
          </GridPane.margin></DatePicker>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <buttons>
-          <Button mnemonicParsing="false" text="OK" />
-            <Button mnemonicParsing="false" text="Cancel" />
+          <Button fx:id="btnOk" mnemonicParsing="false" text="OK" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" />
         </buttons>
          <GridPane.margin>
             <Insets right="40.0" />
