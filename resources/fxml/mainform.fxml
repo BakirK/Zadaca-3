@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane stylesheets="/css/form.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
 <center>
     <TableView fx:id="tblBooks" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
@@ -80,35 +80,9 @@
           </MenuBar>
           <ToolBar prefHeight="62.0" prefWidth="600.0">
               <items>
-                  <Button fx:id="tbAdd" maxWidth="50" mnemonicParsing="false" onAction="#addBook">
-                      <graphic>
-                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
-                              <image>
-                                  <Image url="/add.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                  </Button>
-      
-                  <Button fx:id="tbChange" maxWidth="50" mnemonicParsing="false" onAction="#changeBook">
-                      <graphic>
-                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
-                              <image>
-                                  <Image url="/edit.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                  </Button>
-      
-                  <Button fx:id="tbDelete" maxWidth="50" mnemonicParsing="false" onAction="#deleteBook">
-                      <graphic>
-                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="false">
-                              <image>
-                                  <Image url="/delete.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                  </Button>
+                  <Button fx:id="tbAdd" maxWidth="50" mnemonicParsing="false" onAction="#addBook"/>
+                  <Button fx:id="tbChange" maxWidth="50" mnemonicParsing="false" onAction="#changeBook"/>
+                  <Button fx:id="tbDelete" maxWidth="50" mnemonicParsing="false" onAction="#deleteBook"/>
               </items>
           </ToolBar>
          </children>

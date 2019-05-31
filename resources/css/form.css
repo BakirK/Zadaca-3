@@ -1,0 +1,18 @@
+.poljeIspravno {
+    -fx-control-inner-background: greenyellow;
+}
+.poljeNijeIspravno {
+    -fx-control-inner-background: lightpink;
+}
+
+#tbAdd {
+    -fx-graphic: url("/icons/add.png");
+}
+
+#tbDelete {
+    -fx-graphic: url("/icons/delete.png");
+}
+
+#tbChange {
+    -fx-graphic: url("/icons/edit.png");
+}
