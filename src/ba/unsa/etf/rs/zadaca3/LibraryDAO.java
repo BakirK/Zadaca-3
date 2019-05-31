@@ -14,7 +14,7 @@ public class LibraryDAO {
     private static LibraryDAO instance = null;
     private Connection conn;
     private PreparedStatement getBooksStatement, addBookStatement, deleteCurrentBookStatement, updateBook,
-            deleteAllBooksStatement;
+            deleteAllBooksStatement, getMaxBookId;
 
 
     public ObservableList<Book> getBooks() {
@@ -34,7 +34,7 @@ public class LibraryDAO {
     }
 
     public void setCurrentBook(Book currentBook) {
-        this.currentBook.set(currentBook);
+        this.currentBook = new SimpleObjectProperty<>(currentBook);
     }
 
     public static LibraryDAO getInstance() {
@@ -86,6 +86,7 @@ public class LibraryDAO {
             deleteAllBooksStatement = conn.prepareStatement("DELETE FROM books WHERE 1 = 1; COMMIT;");
 
             getBooksStatement = conn.prepareStatement("SELECT id, author, title, isbn, pagecount, publishdate FROM books;");
+            getMaxBookId = conn.prepareStatement("SELECT MAX(id) + 1 FROM books;");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -97,7 +98,9 @@ public class LibraryDAO {
 
     public void addBook(Book book) {
         try {
-            addBookStatement.setInt(1, book.getId());
+            ResultSet resultSet = getMaxBookId.executeQuery();
+            resultSet.next();
+            addBookStatement.setInt(1, resultSet.getInt(1));
             addBookStatement.setString(2, book.authorProperty().get());
             addBookStatement.setString(3, book.titleProperty().get());
             addBookStatement.setString(4, book.isbnProperty().get());
@@ -132,7 +135,7 @@ public class LibraryDAO {
             updateBook.setInt(6, book.getId());
             updateBook.executeUpdate();
             int index = books.indexOf(currentBook);
-            books.set(books.indexOf(currentBook), book);
+            books.set(index, book);
             currentBook.set(book);
         } catch (SQLException e) {
             e.printStackTrace();

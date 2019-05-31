@@ -109,6 +109,13 @@ public class Book {
 
     public  static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd. MM. yyyy");
 
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Book)) return false;
+        Book other = (Book) o;
+        return (this.id == other.id);
+    }
+
 
 
 
