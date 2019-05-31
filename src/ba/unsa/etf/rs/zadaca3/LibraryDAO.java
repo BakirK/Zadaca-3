@@ -37,7 +37,12 @@ public class LibraryDAO {
     }
 
     public void setCurrentBook(Book currentBook) {
-        this.currentBook = new SimpleObjectProperty<>(currentBook);
+        if (this.currentBook == null) {
+            this.currentBook = new SimpleObjectProperty<>(currentBook);
+        } else {
+            this.currentBook.set(currentBook);
+        }
+
     }
 
     public static LibraryDAO getInstance() {
@@ -102,8 +107,12 @@ public class LibraryDAO {
     public void addBook(Book book) {
         try {
             ResultSet resultSet = getMaxBookId.executeQuery();
-            resultSet.next();
-            int id = resultSet.getInt(1);
+            int id;
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
+            } else {
+                id = 0;
+            }
             addBookStatement.setInt(1, id);
             addBookStatement.setString(2, book.authorProperty().get());
             addBookStatement.setString(3, book.titleProperty().get());
@@ -139,7 +148,7 @@ public class LibraryDAO {
             updateBook.setString(3, book.authorProperty().get());
             updateBook.setString(4, book.isbnProperty().get());
             updateBook.setDate(5, Date.valueOf(book.publishDateProperty().get()));
-            updateBook.setInt(6, book.getId());
+            updateBook.setInt(6, currentBook.get().getId());
             updateBook.executeUpdate();
             int index = books.indexOf(currentBook.get());
             books.set(index, book);
