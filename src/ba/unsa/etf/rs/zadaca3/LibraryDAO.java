@@ -26,6 +26,9 @@ public class LibraryDAO {
     }
 
     public Book getCurrentBook() {
+        if (currentBook == null) {
+            return null;
+        }
         return currentBook.get();
     }
 
@@ -117,10 +120,12 @@ public class LibraryDAO {
 
     public  void deleteBook() {
         try {
-            deleteCurrentBookStatement.setInt(1, currentBook.get().getId());
-            deleteCurrentBookStatement.executeUpdate();
-            books.remove(currentBook.get());
-            currentBook = null;
+            if (currentBook != null) {
+                deleteCurrentBookStatement.setInt(1, currentBook.get().getId());
+                deleteCurrentBookStatement.executeUpdate();
+                books.remove(currentBook.get());
+                currentBook = null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
