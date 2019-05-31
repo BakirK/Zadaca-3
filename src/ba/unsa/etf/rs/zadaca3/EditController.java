@@ -40,13 +40,22 @@ public class EditController {
     public void initialize() {
         if (book == null) {
             fldIsbn.setText("");
+            fldIsbn.getStyleClass().add("fieldIncorrect");
             fldTitle.setText("");
+            fldTitle.getStyleClass().add("fieldIncorrect");
             fldAuthor.setText("");
+            fldAuthor.getStyleClass().add("fieldIncorrect");
             dpPublishDate.getEditor().setText("");
+
         } else {
             fldIsbn.setText(book.getIsbn());
+            fldIsbn.getStyleClass().add("fieldCorrect");
             fldTitle.setText(book.getTitle());
+            fldTitle.getStyleClass().add("fieldCorrect");
             fldAuthor.setText(book.getAuthor());
+            fldAuthor.getStyleClass().add("fieldCorrect");
+            dpPublishDate.setValue(book.getPublishDate());
+
         }
 
         SpinnerValueFactory<Integer> spinPageCountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, 10);
