@@ -21,7 +21,7 @@ public class EditController {
     private Spinner spinPageCount;
     @FXML
     private TextField fldIsbn, fldTitle, fldAuthor, lastFocusedFld;
-    private boolean isbnCorrectInput = false, dateCorrectInput = false, titleCorrectInput = false,
+    private boolean isbnCorrectInput = false, dateCorrectInput = true, titleCorrectInput = false,
             authorCorrectInput = false, validated = false;
     private Book book = null;
     public Book getBook() {
@@ -46,8 +46,8 @@ public class EditController {
             fldTitle.getStyleClass().add("fieldIncorrect");
             fldAuthor.setText("");
             fldAuthor.getStyleClass().add("fieldIncorrect");
-            dpPublishDate.getEditor().setText("");
-            dpPublishDate.getEditor().getStyleClass().add("fieldIncorrect");
+            dpPublishDate.setValue(LocalDate.now());
+            dpPublishDate.getEditor().getStyleClass().add("fieldCorrect");
             SpinnerValueFactory<Integer> spinPageCountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, 10, 5);
             this.spinPageCount.setValueFactory(spinPageCountValueFactory);
 
@@ -234,9 +234,7 @@ public class EditController {
             book.setIsbn(fldIsbn.getText());
             book.setPageCount((Integer) spinPageCount.getValue());
             book.setPublishDate(dpPublishDate.getValue());
-            System.out.println(book.getPublishDate());
             validated = true;
-            System.out.println("validated");
             zatvoriProzorPropuhJe(actionEvent);
         }
 
