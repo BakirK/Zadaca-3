@@ -15,6 +15,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class MainController {
@@ -77,7 +78,9 @@ public class MainController {
 
     @FXML
     private void addBook(ActionEvent actionEvent) {
-
+        if(!myStage.isShowing() && model.getCurrentBook() != null) {
+            openNewWindow(null);
+        }
     }
 
     @FXML
@@ -86,7 +89,9 @@ public class MainController {
             if(mouseEvent.getClickCount() >= 2){
                 //System.out.println("Double clicked" + mouseEvent.getClickCount());
                 try {
-                    otvoriNovi();
+                    if(!myStage.isShowing() && model.getCurrentBook() != null) {
+                        openNewWindow(model.getCurrentBook());
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -94,14 +99,19 @@ public class MainController {
         }
     }
 
-    public void otvoriNovi() throws Exception {
+    public void openNewWindow(Book book) {
         if(!myStage.isShowing() && model.getCurrentBook() != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editbook.fxml"));
-            loader.setController(new EditController(model.getCurrentBook()));
-            Parent root = loader.load();
-            myStage.setTitle("Edit current book");
-            myStage.setScene(new Scene(root, 350, 300));
-            myStage.show();
+            loader.setController(new EditController(book));
+            Parent root = null;
+            try {
+                root = loader.load();
+                myStage.setTitle("Edit current book");
+                myStage.setScene(new Scene(root, 350, 300));
+                myStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
