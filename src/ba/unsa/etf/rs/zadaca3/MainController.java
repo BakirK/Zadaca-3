@@ -110,7 +110,7 @@ public class MainController {
     public void openNewWindow(Book book) {
         if(!myStage.isShowing()) {
             boolean adding = false;
-            if (book != null) {
+            if (book == null) {
                 adding = true;
             }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editbook.fxml"));
@@ -134,8 +134,11 @@ public class MainController {
                     if (newBook != null) {
                         if (finalAdding) {
                             model.addBook(newBook);
+                            updateTableView();
+                            tblBooks.getSelectionModel().selectLast();
                         } else {
                             model.updateCurrentBook(book);
+                            updateTableView();
                         }
                     }
                 });
@@ -148,6 +151,7 @@ public class MainController {
     private void updateTableView() {
         int index = tblBooks.getSelectionModel().getSelectedIndex();
         tblBooks.getItems().clear();
+        model.loadBooks();
         tblBooks.setItems(model.getBooks());
         tblBooks.requestFocus();
         tblBooks.getSelectionModel().select(index);
