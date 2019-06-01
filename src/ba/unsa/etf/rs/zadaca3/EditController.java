@@ -234,9 +234,7 @@ public class EditController {
             System.out.println(book.getPublishDate());
             validated = true;
             System.out.println("validated");
-            Node n = (Node) actionEvent.getSource();
-            Stage stage = (Stage) n.getScene().getWindow();
-            stage.close();
+            zatvoriProzorPropuhJe(actionEvent);
         }
 
     }

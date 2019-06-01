@@ -3,6 +3,7 @@ package ba.unsa.etf.rs.zadaca3;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -69,7 +70,14 @@ public class MainController {
     }
 
     @FXML
-    private void changeBook(ActionEvent actionEvent) {
+    private void editBook(ActionEvent actionEvent) {
+        try {
+            if(!myStage.isShowing() && model.getCurrentBook() != null) {
+                openNewWindow(model.getCurrentBook());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -78,7 +86,7 @@ public class MainController {
 
     @FXML
     private void addBook(ActionEvent actionEvent) {
-        if(!myStage.isShowing() && model.getCurrentBook() != null) {
+        if(!myStage.isShowing()) {
             openNewWindow(null);
         }
     }
@@ -100,15 +108,37 @@ public class MainController {
     }
 
     public void openNewWindow(Book book) {
-        if(!myStage.isShowing() && model.getCurrentBook() != null) {
+        if(!myStage.isShowing()) {
+            boolean adding = false;
+            if (book != null) {
+                adding = true;
+            }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editbook.fxml"));
-            loader.setController(new EditController(book));
+            EditController editController = new EditController(book);
+            loader.setController(editController);
             Parent root = null;
             try {
                 root = loader.load();
-                myStage.setTitle("Edit current book");
+                if (book == null) {
+                    myStage.setTitle("Add new book");
+                } else {
+                    myStage.setTitle("Edit current book");
+                }
                 myStage.setScene(new Scene(root, 350, 300));
+                myStage.setResizable(false);
                 myStage.show();
+
+                boolean finalAdding = adding;
+                myStage.setOnHiding(Event -> {
+                    Book newBook = editController.getBook();
+                    if (newBook != null) {
+                        if (finalAdding) {
+                            model.addBook(newBook);
+                        } else {
+                            model.updateCurrentBook(book);
+                        }
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }

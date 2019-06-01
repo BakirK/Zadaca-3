@@ -203,7 +203,7 @@ public class LibraryDAO {
 
     public List<Book> getBookList() {
         List<Book> foo = new ArrayList<>(books);
-        return foo;
+        return   foo;
         //return books;
     }*/
 
@@ -216,4 +216,6 @@ public class LibraryDAO {
             list += books.get(i).toString() + "\n";
         return list;
     }
+
+
 }

@@ -78,8 +78,8 @@
           </MenuBar>
           <ToolBar prefHeight="62.0" prefWidth="600.0">
               <items>
-                  <Button fx:id="tbAdd" maxWidth="50" mnemonicParsing="false" onAction="#openNewWindow" />
-                  <Button fx:id="tbChange" maxWidth="50" mnemonicParsing="false" onAction="#changeBook" />
+                  <Button fx:id="tbAdd" maxWidth="50" mnemonicParsing="false" onAction="#addBook" />
+                  <Button fx:id="tbChange" maxWidth="50" mnemonicParsing="false" onAction="#editBook" />
                   <Button fx:id="tbDelete" maxWidth="50" mnemonicParsing="false" onAction="#deleteBook" />
               </items>
           </ToolBar>
