@@ -33,6 +33,10 @@ public class Book {
         setPublishDate(publishDate);
     }
 
+    public Book() {
+
+    }
+
     public int getId() {
         return id;
     }
