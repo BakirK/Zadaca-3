@@ -145,4 +145,12 @@ public class MainController {
         }
     }
 
+    private void updateTableView() {
+        int index = tblBooks.getSelectionModel().getSelectedIndex();
+        tblBooks.getItems().clear();
+        tblBooks.setItems(model.getBooks());
+        tblBooks.requestFocus();
+        tblBooks.getSelectionModel().select(index);
+    }
+
 }
