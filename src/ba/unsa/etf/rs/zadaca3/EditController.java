@@ -226,6 +226,9 @@ public class EditController {
     private void validateInput(ActionEvent actionEvent) {
         lastFocusedFld.requestFocus();
         if(validateText()) {
+            if (book == null) {
+                book = new Book();
+            }
             book.setTitle(fldTitle.getText());
             book.setAuthor(fldAuthor.getText());
             book.setIsbn(fldIsbn.getText());
