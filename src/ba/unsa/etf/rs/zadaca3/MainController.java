@@ -179,22 +179,14 @@ public class MainController {
     @FXML
     private void menuOpen(ActionEvent actionEvent) {
         File file = new File("resources/Data.xml");
-        try {
-            tblBooks.setItems(FXCollections.observableArrayList(XMLFormat.read(file)));
-            tblBooks.requestFocus();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        tblBooks.setItems(FXCollections.observableArrayList(XMLFormat.read(file)));
+        tblBooks.requestFocus();
     }
 
     @FXML
     private void menuSave(ActionEvent actionEvent) {
         File file = new File("resources/Data.xml");
-        try {
-            XMLFormat.write(file, new ArrayList<Book>(model.getBooks()));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        XMLFormat.write(file, new ArrayList<Book>(model.getBooks()));
     }
 
     @FXML

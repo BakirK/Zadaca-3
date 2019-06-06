@@ -33,11 +33,7 @@ class XMLTest {
             lista.add(b);
 
         File test = new File("test.xml");
-        try {
-            XMLFormat.write(test, lista);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        XMLFormat.write(test, lista);
         try {
             String content = new String(Files.readAllBytes(Paths.get(test.getPath())));
 
@@ -54,11 +50,7 @@ class XMLTest {
     public void testSave2 () {
         ArrayList<Book> list = new ArrayList<>();
         File test = new File("test.xml");
-        try {
-            XMLFormat.write(test, list);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        XMLFormat.write(test, list);
         try {
             String content = new String(Files.readAllBytes(Paths.get(test.getPath())));
             String expected = "<library/>";

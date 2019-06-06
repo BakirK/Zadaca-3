@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class XMLFormat {
-    public static ArrayList<Book> read(File file) {
+    public static ArrayList<Book> read(File file){
         ArrayList<Book> books = new ArrayList<>();
         Book book = null;
         XMLDecoder input = null;
@@ -28,6 +28,12 @@ public class XMLFormat {
         return books;
     }
 
+    private static String getFileExtension(File file) {
+        String fileName = file.getName();
+        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+            return fileName.substring(fileName.lastIndexOf(".")+1);
+        else return "";
+    }
 
     public static void write(File file, ArrayList<Book> books){
         XMLEncoder output = null;
