@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="/css/form.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="ba.unsa.etf.rs.zadaca3.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="/css/form.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
 <center>
     <TableView fx:id="tblBooks" onMouseClicked="#checkDoubleClick" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
@@ -29,19 +29,19 @@
               <menus>
                   <Menu mnemonicParsing="true" text="_File">
                       <items>
-                          <MenuItem mnemonicParsing="true" text="_Open...">
+                          <MenuItem mnemonicParsing="true" onAction="#menuOpen" text="_Open...">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
-                          <MenuItem mnemonicParsing="true" text="_Save">
+                          <MenuItem mnemonicParsing="true" onAction="#menuSave" text="_Save">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
-                          <MenuItem mnemonicParsing="true" text="_Print">
+                          <MenuItem mnemonicParsing="true" onAction="#menuPrint" text="_Print">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
-                          <MenuItem mnemonicParsing="true" text="E_xit">
+                          <MenuItem mnemonicParsing="true" onAction="#computerEndProgram" text="E_xit">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
@@ -52,15 +52,15 @@
                   </Menu>
                   <Menu mnemonicParsing="true" text="_Edit">
                       <items>
-                          <MenuItem mnemonicParsing="true" text="_Add">
+                          <MenuItem mnemonicParsing="true" onAction="#addBook" text="_Add">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
-                          <MenuItem mnemonicParsing="true" text="C_hange">
+                          <MenuItem mnemonicParsing="true" onAction="#editBook" text="C_hange">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
-                          <MenuItem mnemonicParsing="true" text="_Delete">
+                          <MenuItem mnemonicParsing="true" onAction="#deleteBook" text="_Delete">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>

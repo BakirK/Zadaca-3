@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class MainController {
     @FXML
     private TableView tblBooks;
@@ -80,14 +82,17 @@ public class MainController {
 
     @FXML
     private void deleteBook(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete selected book?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-        alert.showAndWait();
+        if ( model.getCurrentBook() != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete selected book?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert.showAndWait();
 
-        if (alert.getResult() == ButtonType.YES) {
-            model.deleteBook();
-            updateTableView();
-            tblBooks.getSelectionModel().selectFirst();
+            if (alert.getResult() == ButtonType.YES) {
+                model.deleteBook();
+                updateTableView();
+                tblBooks.getSelectionModel().selectFirst();
+            }
         }
+
     }
 
     @FXML
@@ -130,7 +135,7 @@ public class MainController {
                 } else {
                     myStage.setTitle("Edit current book");
                 }
-                myStage.setScene(new Scene(root, 350, 300));
+                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 myStage.setResizable(false);
                 myStage.show();
 
@@ -163,4 +168,19 @@ public class MainController {
         tblBooks.getSelectionModel().select(index);
     }
 
+    @FXML
+    private void menuOpen(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void menuSave(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void menuPrint(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void computerEndProgram(ActionEvent actionEvent) {
+    }
 }

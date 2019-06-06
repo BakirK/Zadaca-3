@@ -67,7 +67,8 @@ public class EditController {
             dpPublishDate.setValue(book.getPublishDate());
             dpPublishDate.getEditor().getStyleClass().add("fieldCorrect");
             dateCorrectInput = true;
-            SpinnerValueFactory<Integer> spinPageCountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, book.getPageCount(), 5);
+            SpinnerValueFactory<Integer> spinPageCountValueFactory =
+                    new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, book.getPageCount(), 5);
             this.spinPageCount.setValueFactory(spinPageCountValueFactory);
         }
 
