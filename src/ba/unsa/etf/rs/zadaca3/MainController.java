@@ -1,13 +1,10 @@
 package ba.unsa.etf.rs.zadaca3;
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,12 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -36,7 +30,8 @@ public class MainController {
     @FXML
     private Button tbDelete, tbChange, tbAdd;
     private LibraryDAO model;
-    Stage myStage = new Stage();
+    Stage editBookWindow = new Stage();
+    Stage aboutWindow = new Stage();
     @FXML
     private Label statusMsg;
 
@@ -84,7 +79,7 @@ public class MainController {
     @FXML
     private void editBook(ActionEvent actionEvent) {
         try {
-            if(!myStage.isShowing() && model.getCurrentBook() != null) {
+            if(!editBookWindow.isShowing() && model.getCurrentBook() != null) {
                 statusMsg.setText("Editing book.");
                 openNewWindow(model.getCurrentBook());
             }
@@ -115,7 +110,7 @@ public class MainController {
     @FXML
     private void addBook(ActionEvent actionEvent) {
         statusMsg.setText("Adding new book.");
-        if(!myStage.isShowing()) {
+        if(!editBookWindow.isShowing()) {
             openNewWindow(null);
         }
     }
@@ -126,7 +121,7 @@ public class MainController {
             if(mouseEvent.getClickCount() >= 2){
                 //System.out.println("Double clicked" + mouseEvent.getClickCount());
                 try {
-                    if(!myStage.isShowing() && model.getCurrentBook() != null) {
+                    if(!editBookWindow.isShowing() && model.getCurrentBook() != null) {
                         openNewWindow(model.getCurrentBook());
                     }
                 } catch (Exception e) {
@@ -137,10 +132,25 @@ public class MainController {
     }
 
     public void openAboutWindow(ActionEvent actionEvent) {
+        if(!aboutWindow.isShowing()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/aboutWindow.fxml"));
+            AboutWindowController aboutWindowController = new AboutWindowController();
+            loader.setController(aboutWindowController);
+            Parent root = null;
+            try {
+                root = loader.load();
+                aboutWindow.setTitle("About");
+                aboutWindow.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                aboutWindow.setResizable(false);
+                aboutWindow.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void openNewWindow(Book book) {
-        if(!myStage.isShowing()) {
+        if(!editBookWindow.isShowing()) {
             boolean adding = false;
             if (book == null) {
                 adding = true;
@@ -152,16 +162,16 @@ public class MainController {
             try {
                 root = loader.load();
                 if (book == null) {
-                    myStage.setTitle("Add new book");
+                    editBookWindow.setTitle("Add new book");
                 } else {
-                    myStage.setTitle("Edit current book");
+                    editBookWindow.setTitle("Edit current book");
                 }
-                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-                myStage.setResizable(false);
-                myStage.show();
+                editBookWindow.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                editBookWindow.setResizable(false);
+                editBookWindow.show();
 
                 boolean finalAdding = adding;
-                myStage.setOnHiding(Event -> {
+                editBookWindow.setOnHiding(Event -> {
                     Book newBook = editController.getBook();
                     if (newBook != null) {
                         if (finalAdding) {
