@@ -68,8 +68,8 @@ public class MainController {
             }
         });
 
-        tblBooks.requestFocus();
-        tblBooks.getSelectionModel().selectFirst();
+        /*tblBooks.requestFocus();
+        tblBooks.getSelectionModel().selectFirst();*/
     }
 
     @FXML
@@ -100,7 +100,7 @@ public class MainController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete selected book?", ButtonType.OK, ButtonType.NO, ButtonType.CANCEL);
             alert.showAndWait();
 
-            if (alert.getResult() == ButtonType.YES) {
+            if (alert.getResult() == ButtonType.OK) {
                 model.deleteBook();
                 updateTableView();
                 tblBooks.getSelectionModel().selectFirst();
