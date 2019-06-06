@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class EditController implements Serializable {
+public class EditController {
     @FXML
     private Button btnCancel, btnOk;
     @FXML

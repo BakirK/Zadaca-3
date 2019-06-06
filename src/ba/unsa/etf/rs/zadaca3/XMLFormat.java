@@ -14,11 +14,13 @@ public class XMLFormat {
         Book book = null;
         XMLDecoder input = null;
         try {
-            input = new XMLDecoder(new FileInputStream("Data.xml"));
+            input = new XMLDecoder(new FileInputStream(file.getPath()));
             while((book = (Book) input.readObject()) != null) {
                 books.add(book);
             }
             input.close();
+        } catch(IndexOutOfBoundsException e) {
+            return books;
         } catch(Exception e) {
             input.close();
             System.out.println("Greška: "+e);
@@ -31,7 +33,7 @@ public class XMLFormat {
     public static void write(File file, ArrayList<Book> books) throws FileNotFoundException {
         XMLEncoder output = null;
         try {
-            output = new XMLEncoder(new FileOutputStream(file.getAbsolutePath()));
+            output = new XMLEncoder(new FileOutputStream(file.getPath()));
             output.setPersistenceDelegate(LocalDate.class,
                 new PersistenceDelegate() {
                     @Override

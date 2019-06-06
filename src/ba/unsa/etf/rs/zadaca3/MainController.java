@@ -3,6 +3,8 @@ package ba.unsa.etf.rs.zadaca3;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -176,6 +178,13 @@ public class MainController {
 
     @FXML
     private void menuOpen(ActionEvent actionEvent) {
+        File file = new File("resources/Data.xml");
+        try {
+            tblBooks.setItems(FXCollections.observableArrayList(XMLFormat.read(file)));
+            tblBooks.requestFocus();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
