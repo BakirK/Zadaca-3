@@ -9,10 +9,11 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class EditController {
+public class EditController implements Serializable {
     @FXML
     private Button btnCancel, btnOk;
     @FXML

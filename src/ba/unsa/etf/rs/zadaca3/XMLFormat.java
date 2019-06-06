@@ -46,9 +46,9 @@ public class XMLFormat {
                 output.writeObject(book);
             }
             output.close();
-        } catch(Exception e) {
+        } catch(FileNotFoundException e) {
             output.close();
-            System.out.println("Greška: "+e);
+            System.out.println("Greška: " + e);
             throw new FileNotFoundException();
         }
     }

@@ -4,10 +4,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Book {
+public class Book implements Serializable {
     private int id;
     private SimpleStringProperty author = new SimpleStringProperty();
     private SimpleStringProperty title = new SimpleStringProperty();

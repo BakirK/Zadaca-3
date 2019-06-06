@@ -15,8 +15,13 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -175,6 +180,12 @@ public class MainController {
 
     @FXML
     private void menuSave(ActionEvent actionEvent) {
+        File file = new File("Data.xml");
+        try {
+            XMLFormat.write(file, new ArrayList<Book>(model.getBooks()));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

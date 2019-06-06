@@ -4,13 +4,14 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class LibraryDAO {
+public class LibraryDAO implements Serializable {
     private ObservableList<Book> books = FXCollections.observableArrayList();
     private SimpleObjectProperty<Book> currentBook  = null;
     private static LibraryDAO instance = null;
