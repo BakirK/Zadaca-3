@@ -87,6 +87,6 @@
       </VBox>
    </top>
    <bottom>
-      <Label fx:id="statusMsg" text="Label" BorderPane.alignment="CENTER_LEFT" />
+      <Label fx:id="statusMsg" text="" BorderPane.alignment="CENTER_LEFT" />
    </bottom>
 </BorderPane>

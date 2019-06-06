@@ -1,6 +1,7 @@
 package ba.unsa.etf.rs.zadaca3;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -36,6 +37,8 @@ public class MainController {
     private Button tbDelete, tbChange, tbAdd;
     private LibraryDAO model;
     Stage myStage = new Stage();
+    @FXML
+    private Label statusMsg;
 
     public MainController(LibraryDAO model) {
         this.model = model;
@@ -44,6 +47,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
+        statusMsg.setText("Program started.");
         colAuthor.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
         colTitle.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         colPublishDate.setCellValueFactory(new PropertyValueFactory<LocalDate, String>("publishDate"));
@@ -81,6 +85,7 @@ public class MainController {
     private void editBook(ActionEvent actionEvent) {
         try {
             if(!myStage.isShowing() && model.getCurrentBook() != null) {
+                statusMsg.setText("Editing book.");
                 openNewWindow(model.getCurrentBook());
             }
         } catch (Exception e) {
@@ -90,14 +95,18 @@ public class MainController {
 
     @FXML
     private void deleteBook(ActionEvent actionEvent) {
+        statusMsg.setText("Deleting book.");
         if ( model.getCurrentBook() != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete selected book?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete selected book?", ButtonType.OK, ButtonType.NO, ButtonType.CANCEL);
             alert.showAndWait();
 
             if (alert.getResult() == ButtonType.YES) {
                 model.deleteBook();
                 updateTableView();
                 tblBooks.getSelectionModel().selectFirst();
+                statusMsg.setText("Book deleted.");
+            } else {
+                statusMsg.setText("Book not deleted.");
             }
         }
 
@@ -105,6 +114,7 @@ public class MainController {
 
     @FXML
     private void addBook(ActionEvent actionEvent) {
+        statusMsg.setText("Adding new book.");
         if(!myStage.isShowing()) {
             openNewWindow(null);
         }
@@ -154,10 +164,18 @@ public class MainController {
                         if (finalAdding) {
                             model.addBook(newBook);
                             updateTableView();
+                            statusMsg.setText("Book added.");
                             tblBooks.getSelectionModel().selectLast();
                         } else {
                             model.updateCurrentBook(book);
+                            statusMsg.setText("Book edited.");
                             updateTableView();
+                        }
+                    } else {
+                        if (finalAdding) {
+                            statusMsg.setText("Book not added.");
+                        } else {
+                            statusMsg.setText("Book not edited.");
                         }
                     }
                 });
@@ -195,6 +213,7 @@ public class MainController {
 
     @FXML
     private void menuPrint(ActionEvent actionEvent) {
+        statusMsg.setText("Printing books to standard output.");
         System.out.println("Books are:\n");
         System.out.println(model.getBookList());
     }
