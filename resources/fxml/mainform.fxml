@@ -71,7 +71,7 @@
                   </Menu>
                   <Menu mnemonicParsing="true" text="_Help">
                       <items>
-                          <MenuItem mnemonicParsing="true" text="_About" />
+                          <MenuItem mnemonicParsing="true" onAction="#openAboutWindow" text="_About" />
                       </items>
                   </Menu>
               </menus>

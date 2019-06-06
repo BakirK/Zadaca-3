@@ -136,6 +136,9 @@ public class MainController {
         }
     }
 
+    public void openAboutWindow(ActionEvent actionEvent) {
+    }
+
     public void openNewWindow(Book book) {
         if(!myStage.isShowing()) {
             boolean adding = false;
