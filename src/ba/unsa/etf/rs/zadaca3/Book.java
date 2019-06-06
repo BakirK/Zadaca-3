@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Book implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private SimpleStringProperty author = new SimpleStringProperty();
     private SimpleStringProperty title = new SimpleStringProperty();

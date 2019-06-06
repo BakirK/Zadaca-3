@@ -179,7 +179,11 @@ public class MainController {
     @FXML
     private void menuOpen(ActionEvent actionEvent) {
         File file = new File("resources/Data.xml");
-        tblBooks.setItems(FXCollections.observableArrayList(XMLFormat.read(file)));
+        try {
+            tblBooks.setItems(FXCollections.observableArrayList(XMLFormat.read(file)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         tblBooks.requestFocus();
     }
 

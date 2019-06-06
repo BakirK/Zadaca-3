@@ -9,7 +9,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class XMLFormat {
-    public static ArrayList<Book> read(File file){
+    public static ArrayList<Book> read(File file) throws Exception {
+        if (!"xml".equals(getFileExtension(file))) {
+            throw new Exception();
+        }
         ArrayList<Book> books = new ArrayList<>();
         Book book = null;
         XMLDecoder input = null;

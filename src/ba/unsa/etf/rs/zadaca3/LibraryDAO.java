@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class LibraryDAO implements Serializable {
+public class LibraryDAO {
     private ObservableList<Book> books = FXCollections.observableArrayList();
     private SimpleObjectProperty<Book> currentBook  = null;
     private static LibraryDAO instance = null;

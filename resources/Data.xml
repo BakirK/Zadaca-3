@@ -9,7 +9,7 @@
   </void>
   <void property="publishDate">
    <object class="java.time.LocalDate" method="parse">
-    <string>2019-06-05</string>
+    <string>2019-06-07</string>
    </object>
   </void>
   <void property="title">
@@ -28,7 +28,7 @@
   </void>
   <void property="publishDate">
    <object class="java.time.LocalDate" method="parse">
-    <string>2019-06-05</string>
+    <string>2019-06-07</string>
    </object>
   </void>
   <void property="title">
@@ -47,30 +47,11 @@
   </void>
   <void property="publishDate">
    <object class="java.time.LocalDate" method="parse">
-    <string>2019-06-05</string>
+    <string>2019-06-07</string>
    </object>
   </void>
   <void property="title">
    <string>Harry Potter</string>
-  </void>
- </object>
- <object class="ba.unsa.etf.rs.zadaca3.Book">
-  <void property="author">
-   <string>asd</string>
-  </void>
-  <void property="id">
-   <int>3</int>
-  </void>
-  <void property="pageCount">
-   <int>10</int>
-  </void>
-  <void property="publishDate">
-   <object class="java.time.LocalDate" method="parse">
-    <string>2019-06-06</string>
-   </object>
-  </void>
-  <void property="title">
-   <string>asd</string>
   </void>
  </object>
 </java>
