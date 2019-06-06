@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class XMLFormat {
-    public static ArrayList<Book> read(File file) throws FileNotFoundException {
+    public static ArrayList<Book> read(File file) {
         ArrayList<Book> books = new ArrayList<>();
         Book book = null;
         XMLDecoder input = null;
@@ -24,13 +24,12 @@ public class XMLFormat {
         } catch(Exception e) {
             input.close();
             System.out.println("Greška: "+e);
-            throw new FileNotFoundException();
         }
         return books;
     }
 
 
-    public static void write(File file, ArrayList<Book> books) throws FileNotFoundException {
+    public static void write(File file, ArrayList<Book> books){
         XMLEncoder output = null;
         try {
             output = new XMLEncoder(new FileOutputStream(file.getPath()));
@@ -51,7 +50,6 @@ public class XMLFormat {
         } catch(FileNotFoundException e) {
             output.close();
             System.out.println("Greška: " + e);
-            throw new FileNotFoundException();
         }
     }
 
