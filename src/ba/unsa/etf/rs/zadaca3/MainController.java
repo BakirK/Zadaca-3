@@ -1,5 +1,6 @@
 package ba.unsa.etf.rs.zadaca3;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -184,5 +185,7 @@ public class MainController {
 
     @FXML
     private void computerEndProgram(ActionEvent actionEvent) {
+        Platform.exit();
+        System.exit(0);
     }
 }
