@@ -178,6 +178,8 @@ public class MainController {
 
     @FXML
     private void menuPrint(ActionEvent actionEvent) {
+        System.out.println("Books are:\n");
+        System.out.println(model.getBookList());
     }
 
     @FXML
