@@ -180,7 +180,7 @@ public class MainController {
 
     @FXML
     private void menuSave(ActionEvent actionEvent) {
-        File file = new File("Data.xml");
+        File file = new File("resources/Data.xml");
         try {
             XMLFormat.write(file, new ArrayList<Book>(model.getBooks()));
         } catch (FileNotFoundException e) {

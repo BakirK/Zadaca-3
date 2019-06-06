@@ -1,9 +1,57 @@
-<?xml version="1.0"?>
-<library>
-    <book pageCount="500">
-        <author>Meša Selimović</author>
-        <title>Tvrđava</title>
-        <isbn>abcd</isbn>
-        <publishDate>20. 3. 1930</publishDate>
-    </book>
-</library>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.2" class="java.beans.XMLDecoder">
+ <object class="ba.unsa.etf.rs.zadaca3.Book">
+  <void property="author">
+   <string>Meša Selimović</string>
+  </void>
+  <void property="pageCount">
+   <int>500</int>
+  </void>
+  <void property="publishDate">
+   <object class="java.time.LocalDate" method="parse">
+    <string>2019-06-05</string>
+   </object>
+  </void>
+  <void property="title">
+   <string>Tvrđava</string>
+  </void>
+ </object>
+ <object class="ba.unsa.etf.rs.zadaca3.Book">
+  <void property="author">
+   <string>Ivo Andrić</string>
+  </void>
+  <void property="id">
+   <int>1</int>
+  </void>
+  <void property="pageCount">
+   <int>500</int>
+  </void>
+  <void property="publishDate">
+   <object class="java.time.LocalDate" method="parse">
+    <string>2019-06-05</string>
+   </object>
+  </void>
+  <void property="title">
+   <string>Travnička hronika</string>
+  </void>
+ </object>
+ <object class="ba.unsa.etf.rs.zadaca3.Book">
+  <void property="author">
+   <string>J. K. Rowling</string>
+  </void>
+  <void property="id">
+   <int>2</int>
+  </void>
+  <void property="pageCount">
+   <int>500</int>
+  </void>
+  <void property="publishDate">
+   <object class="java.time.LocalDate" method="parse">
+    <string>2019-06-05</string>
+   </object>
+  </void>
+  <void property="title">
+   <string>Harry Potter</string>
+  </void>
+ </object>
+</java>

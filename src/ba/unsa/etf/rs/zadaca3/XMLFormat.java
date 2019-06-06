@@ -1,11 +1,11 @@
 package ba.unsa.etf.rs.zadaca3;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
+import java.beans.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class XMLFormat {
@@ -32,7 +32,7 @@ public class XMLFormat {
         XMLEncoder output = null;
         try {
             output = new XMLEncoder(new FileOutputStream(file.getAbsolutePath()));
-            /*output.setPersistenceDelegate(LocalDate.class,
+            output.setPersistenceDelegate(LocalDate.class,
                 new PersistenceDelegate() {
                     @Override
                     protected Expression instantiate(Object localDate, Encoder encdr) {
@@ -41,7 +41,7 @@ public class XMLFormat {
                                 "parse",
                                 new Object[]{localDate.toString()});
                     }
-                });*/
+                });
             for (Book book: books) {
                 output.writeObject(book);
             }
