@@ -2,8 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="/css/form.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
@@ -17,13 +19,23 @@
       </Label>
    </bottom>
    <center>
-      <ImageView fx:id="imgAbout" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+      <ImageView fx:id="imgAbout" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image backgroundLoading="true" url="/icons/etf.png" />
+         </image>
+      </ImageView>
    </center>
    <top>
-      <Label text="Library " BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="15.0" top="20.0" />
-         </BorderPane.margin>
-      </Label>
+      <VBox alignment="CENTER" prefHeight="76.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Library">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Program developed as part of a homework at Faculty of Electrical Engineering Sarajevo" />
+            <Label text="Course: software development" />
+         </children>
+      </VBox>
    </top>
 </BorderPane>
