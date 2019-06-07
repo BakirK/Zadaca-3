@@ -21,7 +21,7 @@ public class XMLFormat {
     private static ArrayList<Integer> pageCount = new ArrayList<>();
     private static ArrayList<LocalDate> publishDate = new ArrayList<>();
 
-    public static void readElements(Element element) {
+    public static void readElements(Element element) throws Exception {
         //System.out.print("Element "+element.getTagName()+", ");
         //int brAtributa = element.getAttributes().getLength();
         if (element.getTagName().equals("book")) {
@@ -58,6 +58,8 @@ public class XMLFormat {
                 publishDate.add(LocalDate.parse(element.getTextContent().replace("[","").replace("]",""), Book.dateFormat));
                 System.out.println("publishDate:" + publishDate.toString());
             }
+        } else {
+            throw new Exception();
         }
         NodeList djeca = element.getChildNodes();
 
@@ -70,7 +72,7 @@ public class XMLFormat {
     }
 
     public static ArrayList<Book> read(File file) throws Exception {
-        if(!getFileExtension(file).equals("xml")){
+        if(!getFileExtension(file).equals("xml") || file.length() == 0){
             throw new FileNotFoundException ();
         }
         ArrayList<Book> books = new ArrayList<>();
@@ -79,6 +81,9 @@ public class XMLFormat {
             DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             xmldoc = docReader.parse(file);
             Element docEle = xmldoc.getDocumentElement();
+            if(!docEle.getTagName().equals("library")) {
+                throw new Exception();
+            }
             NodeList djeca = docEle.getChildNodes();
 
             for(int i = 0; i < djeca.getLength(); i++) {
@@ -87,12 +92,16 @@ public class XMLFormat {
                     readElements((Element) dijete);
                 }
             }
-
+            int size = author.size();
+            if (title.size() != size || isbn.size() != size || pageCount.size() != size || publishDate.size() != size) {
+                throw new Exception();
+            }
             for (int i = 0; i < title.size(); i++) {
                 books.add(new Book(author.get(i), title.get(i), isbn.get(i), pageCount.get(i), publishDate.get(i)));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            throw e;
         }
         return books;
     }
