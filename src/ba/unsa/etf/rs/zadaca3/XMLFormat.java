@@ -1,12 +1,16 @@
 package ba.unsa.etf.rs.zadaca3;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.beans.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -114,7 +118,53 @@ public class XMLFormat {
     }
 
     public static void write(File file, ArrayList<Book> books){
-        XMLEncoder output = null;
+        DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        try {
+            documentBuilder = documentFactory.newDocumentBuilder();
+            Document document = documentBuilder.newDocument();
+            Element root = document.createElement("library");
+            document.appendChild(root);
+            for(Book book: books) {
+                Element bookElement = document.createElement("book");
+                root.appendChild(bookElement);
+
+                Attr pageCountAttr = document.createAttribute("pageCount");
+                pageCountAttr.setValue(String.valueOf(book.getPageCount()));
+                bookElement.setAttributeNode(pageCountAttr);
+
+                Element authorElement = document.createElement("author");
+                authorElement.appendChild(document.createTextNode(book.getAuthor()));
+                bookElement.appendChild(authorElement);
+
+                Element titleElement = document.createElement("title");
+                titleElement.appendChild(document.createTextNode(book.getTitle()));
+                bookElement.appendChild(titleElement);
+
+                Element isbnElement = document.createElement("isbn");
+                isbnElement.appendChild(document.createTextNode(book.getIsbn()));
+                bookElement.appendChild(isbnElement);
+
+
+                Element publishDateElement = document.createElement("publishDate");
+                publishDateElement.appendChild(document.createTextNode(Book.dateFormat.format(book.getPublishDate())));
+                bookElement.appendChild(publishDateElement);
+            }
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(file);
+            transformer.transform(domSource, streamResult);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+
+        /*XMLEncoder output = null;
         try {
             output = new XMLEncoder(new FileOutputStream(file.getPath()));
             output.setPersistenceDelegate(LocalDate.class,
@@ -134,7 +184,7 @@ public class XMLFormat {
         } catch(FileNotFoundException e) {
             output.close();
             System.out.println("Greška: " + e);
-        }
+        }*/
     }
 
 }
