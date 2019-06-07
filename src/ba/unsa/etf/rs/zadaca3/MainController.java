@@ -69,9 +69,6 @@ public class MainController {
 
     @FXML
     private void updateSelectedBook() {
-        if(model.getCurrentBook() == null) {
-            System.out.println("NULL book");
-        }
         Book b = (Book) tblBooks.getSelectionModel().getSelectedItem();
         model.setCurrentBook(b);
     }
