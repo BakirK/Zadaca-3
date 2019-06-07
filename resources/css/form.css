@@ -18,3 +18,7 @@
 #tbChange {
     -fx-graphic: url("/icons/edit.png");
 }
+
+#imgAbout {
+    -fx-graphic: url("/icons/etf.png");
+}
