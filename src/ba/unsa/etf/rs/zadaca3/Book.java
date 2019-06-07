@@ -132,8 +132,4 @@ public class Book implements Serializable {
     public int hashCode() {
         return 7 + 5*id; // 5 and 7 are random prime numbers
     }
-
-
-
-
 }

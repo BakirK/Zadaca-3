@@ -11,10 +11,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.beans.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -31,14 +29,14 @@ public class XMLFormat {
         if (element.getTagName().equals("book")) {
             if (!element.getAttribute("pageCount").isEmpty()) {
                 pageCount.add(Integer.parseInt(element.getAttribute("pageCount").replace("[","").replace("]","")));
-                System.out.println("page:" + pageCount);
+                //System.out.println("page:" + pageCount);
             }
         } else if (element.getTagName().equals("author")) {
             NodeList djecaTemp = element.getChildNodes();
 
             if (djecaTemp.getLength() == 1) {
                 author.add(element.getTextContent().replace("[","").replace("]",""));
-                System.out.println("author:" + author);
+                //System.out.println("author:" + author);
             }
 
         } else if (element.getTagName().equals("title")) {
@@ -46,7 +44,7 @@ public class XMLFormat {
 
             if (djecaTemp.getLength() == 1) {
                 title.add(element.getTextContent().replace("[","").replace("]",""));
-                System.out.println("title:" + title);
+                //System.out.println("title:" + title);
             }
 
         } else if (element.getTagName().equals("isbn")) {
@@ -54,13 +52,13 @@ public class XMLFormat {
 
             if (djecaTemp.getLength() == 1) {
                 isbn.add(element.getTextContent().replace("[","").replace("]",""));
-                System.out.println("isbn:" + isbn);
+                //System.out.println("isbn:" + isbn);
             }
         } else if (element.getTagName().equals("publishDate")) {
             NodeList djecaTemp = element.getChildNodes();
             if (djecaTemp.getLength() == 1) {
                 publishDate.add(LocalDate.parse(element.getTextContent().replace("[","").replace("]",""), Book.dateFormat));
-                System.out.println("publishDate:" + publishDate.toString());
+                //System.out.println("publishDate:" + publishDate.toString());
             }
         } else {
             throw new Exception();
@@ -145,7 +143,6 @@ public class XMLFormat {
                 isbnElement.appendChild(document.createTextNode(book.getIsbn()));
                 bookElement.appendChild(isbnElement);
 
-
                 Element publishDateElement = document.createElement("publishDate");
                 publishDateElement.appendChild(document.createTextNode(Book.dateFormat.format(book.getPublishDate())));
                 bookElement.appendChild(publishDateElement);
@@ -162,29 +159,5 @@ public class XMLFormat {
         } catch (TransformerException e) {
             e.printStackTrace();
         }
-
-
-        /*XMLEncoder output = null;
-        try {
-            output = new XMLEncoder(new FileOutputStream(file.getPath()));
-            output.setPersistenceDelegate(LocalDate.class,
-                new PersistenceDelegate() {
-                    @Override
-                    protected Expression instantiate(Object localDate, Encoder encdr) {
-                        return new Expression(localDate,
-                                LocalDate.class,
-                                "parse",
-                                new Object[]{localDate.toString()});
-                    }
-                });
-            for (Book book: books) {
-                output.writeObject(book);
-            }
-            output.close();
-        } catch(FileNotFoundException e) {
-            output.close();
-            System.out.println("Greška: " + e);
-        }*/
     }
-
 }

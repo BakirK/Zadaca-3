@@ -9,9 +9,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class EditController {
     @FXML
@@ -208,9 +206,6 @@ public class EditController {
                 }
             }
         });
-
-
-
     }
 
     private boolean validateText() {
@@ -239,8 +234,5 @@ public class EditController {
             validated = true;
             zatvoriProzorPropuhJe(actionEvent);
         }
-
     }
-
-
 }
